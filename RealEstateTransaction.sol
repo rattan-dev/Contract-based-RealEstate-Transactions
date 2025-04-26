@@ -29,6 +29,16 @@ contract RealEstateTransaction {
         return properties[_id].owner != address(0);
     }
 
+    // Function to change the name of a property
+    function changePropertyName(uint256 _propertyId, string memory _newName) public {
+        Property storage property = properties[_propertyId];
+
+         require(msg.sender == property.owner, "You are not the owner");
+        require(bytes(_newName).length > 0, "Name cannot be empty");
+
+        property.name = _newName;
+    }
+
     // Function to transfer ownership of a property
     function transferOwnership(uint256 _propertyId, address _newOwner) public payable {
         Property storage property = properties[_propertyId];
