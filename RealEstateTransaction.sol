@@ -39,6 +39,11 @@ contract RealEstateTransaction {
         property.name = _newName;
     }
 
+    function isOwner(uint256 _propertyId, address _address) public view returns (bool) {
+        Property storage property = properties[_propertyId];
+        return property.owner == _address;
+    }
+
     // Function to transfer ownership of a property
     function transferOwnership(uint256 _propertyId, address _newOwner) public payable {
         Property storage property = properties[_propertyId];
