@@ -59,6 +59,10 @@ contract RealEstateTransaction {
         emit PropertyTransferred(_propertyId, previousOwner, _newOwner);
     }
 
+    function isPropertyAvailable(uint256 _propertyId) public view returns (bool) {
+        return properties[_propertyId].owner != address(0);
+    }
+
     // Function to get property details
     function getPropertyDetails(uint256 _id) public view returns (string memory name, address owner, uint256 price) {
         Property storage property = properties[_id];
